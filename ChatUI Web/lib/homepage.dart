@@ -1,11 +1,11 @@
+import 'package:chat_ui_web/screens/calls.dart';
+import 'package:chat_ui_web/screens/chats.dart';
+import 'package:chat_ui_web/screens/events.dart';
+import 'package:chat_ui_web/screens/seen.dart';
+import 'package:chat_ui_web/screens/stats.dart';
+import 'package:chat_ui_web/screens/timer.dart';
 import 'package:flutter/material.dart';
 
-import 'utils/constants.dart';
-import 'utils/constants.dart';
-import 'utils/constants.dart';
-import 'utils/constants.dart';
-import 'utils/constants.dart';
-import 'utils/constants.dart';
 import 'utils/constants.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -15,6 +15,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  int navIndex = 0;
+
+  List<IconData> icons = [
+    Icons.timer,
+    Icons.event_available_rounded,
+    Icons.remove_red_eye_outlined,
+    Icons.people_alt_rounded,
+    Icons.bar_chart,
+    Icons.videocam,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -45,177 +56,53 @@ class _MyHomePageState extends State<MyHomePage> {
                   Expanded(
                     flex: 2,
                     child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left:25.0),
-                                child: Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                    color: primaryColor,
-                                    borderRadius: BorderRadius.circular(10)
+                      child: ListView.separated(
+                        itemCount: icons.length,
+                        separatorBuilder: (context,index) {
+                          return SizedBox(
+                            height: 15,
+                          );
+                        },
+                        itemBuilder: (context,index) {
+                          return GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onTap: () {
+                              setState(() {
+                                navIndex = index;
+                              });
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left:25.0),
+                                  child: AnimatedContainer(
+                                    duration: Duration(milliseconds: 300),
+                                      curve: Curves.linear,
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                          color: (navIndex == index)? Colors.green.withOpacity(0.3) : primaryColor,
+                                          borderRadius: BorderRadius.circular(10)
+                                      ),
+                                      child: Icon(
+                                        icons[index],color: (navIndex == index)? taggedMessageColor : inactiveIconColor,
+                                      )
                                   ),
-                                  child: Icon(
-                                    Icons.timer,color: inactiveIconColor,
-                                  )
                                 ),
-                              ),
 
-                              Opacity(
-                                opacity: 0,
-                                child: Container(
-                                  width: 2,
-                                  height: 40,
-                                  color: taggedMessageColor,
-                                ),
-                              )
-                            ],
-                          ),
-
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left:25.0),
-                                child: Container(
+                                Opacity(
+                                  opacity: (navIndex == index)? 1: 0,
+                                  child: Container(
+                                    width: 2,
                                     height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                        color: primaryColor,
-                                        borderRadius: BorderRadius.circular(10)
-                                    ),
-                                    child: Icon(Icons.event_available_rounded,color: inactiveIconColor),
-                                ),
-                              ),
-
-                              Opacity(
-                                opacity: 0,
-                                child: Container(
-                                  width: 2,
-                                  height: 40,
-                                  color: taggedMessageColor,
-                                ),
-                              )
-                            ],
-                          ),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left:25.0),
-                                child: Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                        color: primaryColor,
-                                        borderRadius: BorderRadius.circular(10)
-                                    ),
-                                    child: Icon(Icons.remove_red_eye_outlined,color: inactiveIconColor),
-                                ),
-                              ),
-
-                              Opacity(
-                                opacity: 0,
-                                child: Container(
-                                  width: 2,
-                                  height: 40,
-                                  color: taggedMessageColor,
-                                ),
-                              )
-                            ],
-                          ),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left:25.0),
-                                child: Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                        color: Colors.green.withOpacity(0.2),
-                                        borderRadius: BorderRadius.circular(10)
-                                    ),
-                                    child: Icon(Icons.people_alt_rounded,color: taggedMessageColor),
-                                ),
-                              ),
-
-                              Opacity(
-                                opacity: 1,
-                                child: Container(
-                                  width: 2,
-                                  height: 40,
-                                  color: taggedMessageColor,
-                                ),
-                              )
-                            ],
-                          ),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left:25.0),
-                                child: Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                        color: primaryColor,
-                                        borderRadius: BorderRadius.circular(10)
-                                    ),
-                                    child: Icon(Icons.bar_chart,color: inactiveIconColor),
-                                ),
-                              ),
-
-                              Opacity(
-                                opacity: 0,
-                                child: Container(
-                                  width: 2,
-                                  height: 40,
-                                  color: taggedMessageColor,
-                                ),
-                              )
-                            ],
-                          ),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left:25.0),
-                                child: Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                        color: primaryColor,
-                                        borderRadius: BorderRadius.circular(10)
-                                    ),
-                                    child: Icon(Icons.videocam,color: inactiveIconColor)
-                                ),
-                              ),
-
-                              Opacity(
-                                opacity: 0,
-                                child: Container(
-                                  width: 2,
-                                  height: 40,
-                                  color: taggedMessageColor,
-                                ),
-                              )
-                            ],
-                          ),
-
-                        ],
+                                    color: taggedMessageColor,
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
+                        }
                       ),
                     ),
                   ),
@@ -245,11 +132,16 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
             Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color:Colors.grey)
-                ),
+              child: IndexedStack(
+                children: [
+                  Timer(),
+                  Events(),
+                  Seen(),
+                  Chats(),
+                  Stats(),
+                  Calls(),
+                ],
+                index: navIndex,
               ),
             )
           ],
