@@ -16,7 +16,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  int navIndex = 0;
+  int navIndex = 3;
 
   List<IconData> icons = [
     Icons.timer,
