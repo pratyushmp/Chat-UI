@@ -4,6 +4,7 @@ Color primaryColor = Color(0xffffffff);
 Color secondaryColor = Color(0xffd1e6e7);
 
 Color inactiveIconColor = Color(0xff9da5b0);
+Color chatScreenColor = Color(0xffedf0f5);
 Color sentMessageColor = Color(0xffd0d3e3);
 Color taggedMessageColor = Color(0xff13aa92);
 Color textGreenColor = Color(0xff208a7b);

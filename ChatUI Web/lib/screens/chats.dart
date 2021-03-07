@@ -174,7 +174,11 @@ class _ChatsState extends State<Chats> {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
-                                fillColor: Colors.grey[100],
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: chatScreenColor, width: 0.0),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                fillColor: chatScreenColor,
                                 filled: true,
                                 hintText: "Search",
                                 hintStyle: TextStyle(
@@ -237,7 +241,7 @@ class _ChatsState extends State<Chats> {
                                           });
                                         },
                                         selected: chatIndex==index,
-                                        selectedTileColor: Colors.grey[100],
+                                        selectedTileColor: chatScreenColor,
                                         leading: CircleAvatar(
                                           maxRadius: 25,
                                           backgroundImage: AssetImage('assets/images/${chats[index][2]}'),
